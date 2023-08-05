@@ -4,8 +4,8 @@ const task = require('./routes/tasks')
 
 
 //// Middleware
+app.use(express.json())
 app.use('/api/v1/task', task)
-
 
 //// Routes
 app.get('/hello', (req, res) => {
