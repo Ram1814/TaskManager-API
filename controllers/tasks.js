@@ -1,10 +1,17 @@
+const { json } = require('express')
+const Tasks = require('../models/tasks')
+
 const getAllTasks = (req, res) => {
     res.send("Get all Tasks")
 }
 
-const createTask = (req, res) => {    
-    console.log(req.body);
-    res.json(req.body)
+const createTask = async (req, res) => {    
+   try {
+    const task = await Tasks.create(req.body)
+    res.status(201).json({task})
+   } catch (error) {
+    res.status(500).json({ msg : error })
+   }
 }
 
 const getSingleTask = (req, res) => {    
